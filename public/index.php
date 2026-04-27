@@ -8,7 +8,7 @@
 </head>
 <body>
     <nav class="navbar">
-            <img src="../images/northhub.svg" id="logo"></img>
+            <img src="../images/northhub.svg" id="logo" onclick="goHome()">
             <button class="navbarbuttons" onclick="showSection('create')"> Create </button>
             <button class="navbarbuttons" > Read </button>
             <button class="navbarbuttons" > Update </button>
@@ -52,9 +52,43 @@
 
 <br/><br/><br/><br/>
 
-    <section id="read" class="content"> View Students </section>
-    <section id="update" class="content"> Update Student Records </section>
-    <section id="delete" class="content"> Remove Student Records </section>
+   <section id="read" class="content">
+    <h1 class="contenttitle"> View Students </h1>
+
+    <?php include '../includes/read.php'; ?>
+</section>
+
+    <section id="update" class="content">
+    <h1 class="contenttitle"> Update Student </h1>
+
+    <form action="../includes/update.php" method="POST">
+
+        <label>ID</label>
+        <input type="number" name="id" required><br>
+
+        <label>Name</label>
+        <input type="text" name="name"><br>
+
+        <label>Surname</label>
+        <input type="text" name="surname"><br>
+
+        <button type="submit">Update</button>
+
+    </form>
+</section>
+    
+<section id="delete" class="content">
+    <h1 class="contenttitle"> Delete Student </h1>
+
+    <form action="../includes/delete.php" method="POST">
+
+        <label>Student ID</label>
+        <input type="number" name="id" required><br>
+
+        <button type="submit">Delete</button>
+
+    </form>
+</section>
 
 
 

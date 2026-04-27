@@ -1,5 +1,19 @@
 //fucntion to show selected section
 function showSection(sectionID){
+
+    const allSections = document.querySelectorAll('.content, .homecontent');
+
+    // hide everything
+    allSections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // show selected
+    const active = document.getElementById(sectionID);
+    if(active){
+        active.style.display = 'block';
+    }
+}
     //initially, select all sections
     // use querySelectorAll for all sections with class content and homecontent
     const sections = document.querySelectorAll('.content');
@@ -17,6 +31,12 @@ function showSection(sectionID){
     if(activeSection){
         activeSection.style.display='block';
     }
+}
+function goHome(){
+    const sections = document.querySelectorAll('.content');
+    sections.forEach(section => section.style.display = 'none');
+
+    document.getElementById('home').style.display = 'block';
 }
 
 //for the insertion success

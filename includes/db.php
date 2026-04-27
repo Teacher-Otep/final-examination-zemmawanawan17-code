@@ -1,6 +1,6 @@
 <?php
 $host = '127.0.0.1'; 
-$db   = 'cc111smsdb';  //sukatan yo dytoy jay nagan ti database yo
+$db   = 'dbstudents';  //sukatan yo dytoy jay nagan ti database yo
 $user = 'root';        //
 $pass = '';            //
 $port = '3308';        //nu nagusar kayo sabali nga port sukatan yo metlang dytoy
