@@ -56,3 +56,12 @@ window.onload = function() {
         window.history.replaceState({}, document.title, window.location.pathname);
     }
 }
+document.getElementById("clrbtn").addEventListener("click", function(){
+
+document.getElementById("surname").value="";
+document.getElementById("name").value="";
+document.getElementById("middlename").value="";
+document.getElementById("address").value="";
+document.getElementById("contact").value="";
+
+})

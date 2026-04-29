@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -12,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $sql = "INSERT INTO students (name, surname, middlename, address, contact_number) 
                 VALUES (:name, :surname, :middlename, :address, :contact)";
-        
+
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':name'       => $name,
@@ -22,9 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':contact'    => $contact
         ]);
 
-        header("Location: ../public/index.php?status=success");
+        // Redirect and pass status=success via URL params
+        echo "<script>
+                window.location.href = '../public/index.php?status=success';
+              </script>";
+
         exit();
-        
+
     } catch (PDOException $e) {
         echo "Database Error: " . $e->getMessage();
     }
