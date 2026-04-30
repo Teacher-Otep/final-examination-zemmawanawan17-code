@@ -1,32 +1,21 @@
 <?php
+require_once 'db.php';
 
-require_once __DIR__ . '/db.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $surname = trim($_POST['surname'] ?? '');
+    $name    = trim($_POST['name']    ?? '');
+    $midname = trim($_POST['midname'] ?? '');
+    $address = trim($_POST['address'] ?? '');
+    $mobile  = trim($_POST['mobile']  ?? '');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'] ?? '';
-    $surname = $_POST['surname'] ?? '';
-    $middlename = $_POST['middlename'] ?? '';
-    $address = $_POST['address'] ?? '';
-    $contact = $_POST['contact'] ?? '';
+    $stmt = $conn->prepare("INSERT INTO students (surname, name, midname, address, mobile) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param('sssss', $surname, $name, $midname, $address, $mobile);
+    $stmt->execute();
+    $stmt->close();
 
-    try {
-        $sql = "INSERT INTO students (name, surname, middlename, address, contact_number) 
-                VALUES (:name, :surname, :middlename, :address, :contact)";
-        
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':name'       => $name,
-            ':surname'    => $surname,
-            ':middlename' => $middlename,
-            ':address'    => $address,
-            ':contact'    => $contact
-        ]);
-
-        header("Location: ../public/index.php?status=success");
-        exit();
-        
-    } catch (PDOException $e) {
-        echo "Database Error: " . $e->getMessage();
-    }
+    header('Location: ../public/index.php?status=inserted&section=create');
+    exit;
 }
+header('Location: ../public/index.php');
+exit;
 ?>
